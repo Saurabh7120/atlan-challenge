@@ -19,8 +19,8 @@ const TableComponent = ({cols,rows}) => {
               </Tr>
             </Thead>
             <Tbody>
-              {rows.map(i => 
-              <Tr>
+              {rows.map((i,idx) => 
+              <Tr key={idx}>
               {i.split(',').map((j,idx) => <Td key={idx}>{j}</Td>)}
               </Tr>
               )}

@@ -18,22 +18,23 @@ export default function Home() {
   const toast = useToast();
 
   
-  const getTable = async() => {
-    try {
-      const {data} = await axios.get('https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/order_details.csv');
-      let splitted = data.split('\n');
-      console.log(splitted.slice(1,splitted.length));
-      setAllCols(splitted[0].split(','))
-      setAllRows(splitted.slice(1,splitted.length))
-    } catch (error) {
-      toast({title: 'Something went wrong while fetching data!', status: 'error', duration: 2000});
-      console.log(error);
-    }
-  }
 
   
 
   useEffect(() => {
+    const getTable = async() => {
+      try {
+        const {data} = await axios.get('https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/order_details.csv');
+        let splitted = data.split('\n');
+        console.log(splitted.slice(1,splitted.length));
+        setAllCols(splitted[0].split(','))
+        setAllRows(splitted.slice(1,splitted.length))
+      } catch (error) {
+        toast({title: 'Something went wrong while fetching data!', status: 'error', duration: 2000});
+        console.log(error);
+      }
+    }
+  
     getTable()
   },[])
 
